@@ -1,0 +1,15 @@
+﻿@model ProductViewModel
+<table class="table table-hover">
+    <tr>
+    <td>@Model.Name</td>
+    <td>@Model.Description</td>
+    <td> <img height="60px" width="60px" src="~/Images/@Model.Picture" alt="Resim Yok" /> </td>
+    <td>
+        <a class="btn btn-info" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">Ürünü Düzenle</a>
+        <a class="btn btn-secondary" asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id">Ürün Detay</a>
+        <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Id">Ürünü Sil</a>
+        </td>
+    </td>
+        
+</table>
+    

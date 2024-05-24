@@ -1,0 +1,20 @@
+﻿@model CategoryViewModel
+
+<h1>@Model.Name</h1>
+
+<table class="table table-hover">
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+                <td>@item.RowNum</td>
+                <td>@item.Name</td>
+                <td> <img height="60px" width="60px" src="~/Images/@item.Picture" alt="Resim Yok" /> </td>
+                <td>
+                <a class="btn btn-info" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id">Ürünü Düzenle</a>
+                <a class="btn btn-secondary" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">Ürün Detay</a>
+                <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">Ürünü Sil</a>
+                </td>
+
+        </tr>
+    }
+</table>

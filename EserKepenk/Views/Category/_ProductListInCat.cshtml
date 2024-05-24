@@ -1,0 +1,13 @@
+﻿@model List<ProductViewModel>
+
+
+
+	@{
+		foreach (var item in Model)
+	{
+		<select class="form-select" aria-label="Default select example">
+			<option selected>Ürünleri buradan görebilirsiniz</option>
+			<option value="@item.RowNum">@item.Name</option>
+		</select>
+	}
+	}

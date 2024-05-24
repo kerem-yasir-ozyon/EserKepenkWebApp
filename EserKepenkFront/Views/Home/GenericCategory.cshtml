@@ -1,0 +1,47 @@
+﻿@model CategoryViewModel
+
+<section class="food_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                @Model.Name
+            </h2>
+        </div>
+
+        <div class="filters-content">
+            <div class="row grid">
+
+                @foreach(ProductViewModel product in Model.Products)
+                {
+                    var base64tostring = Convert.ToBase64String(product.PictureFile, 0, product.PictureFile.Length);
+                    var Imagesrc = string.Format("data:Image/*;base64," + base64tostring);
+
+                    <div class="col-sm-6 col-lg-4 all pizza">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    @* <img src="@Url.ActionLink("RenderImage","Home", new{id=product.Id})" alt=""> *@
+                                    <img src="@Imagesrc" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        @product.Name
+                                    </h5>
+                                    <p>@product.Description</p>
+                                    <div class="options">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="">
+                View More
+            </a>
+        </div>
+    </div>
+</section>

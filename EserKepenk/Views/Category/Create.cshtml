@@ -1,0 +1,15 @@
+﻿<h1>KATEGORİ EKLEME</h1>
+@model CategoryViewModel
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"> </label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
+    </div>
+    <button class="btn btn-primary">EKLE</button>
+
+</form>
+
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+}

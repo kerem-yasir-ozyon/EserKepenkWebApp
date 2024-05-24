@@ -1,0 +1,12 @@
+﻿@using Entities
+@model SliderViewModel
+
+<div class="alert alert-danger">
+    @Model.Title başlıklı slaytı silmek istediğinize emin misiniz?
+</div>
+<form asp-action="Delete" asp-controller="Slider" method="post">
+    <button class="btn btn-danger">EVET</button>
+    <a asp-action="Index" class="btn btn-primary">HAYIR</a>
+    <input asp-for="Title" hidden class="form-control" />
+
+</form>

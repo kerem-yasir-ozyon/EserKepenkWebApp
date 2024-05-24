@@ -1,0 +1,12 @@
+﻿
+@model CategoryViewModel
+
+<div class="alert alert-danger">
+    @Model.Name isimli kategoriyi silmek istediğinize emin misiniz?
+</div>
+<form asp-action="Delete" asp-controller="Category" method="post">
+    <button class="btn btn-danger">EVET</button>
+    <a asp-action="Index" class="btn btn-primary">HAYIR</a>
+    <input asp-for="Name" hidden class="form-control" />
+
+</form>

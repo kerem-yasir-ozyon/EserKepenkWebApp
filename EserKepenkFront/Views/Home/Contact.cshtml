@@ -1,0 +1,75 @@
+﻿@model GuestViewModel
+<div class="alert alert-success alert-dismissible" role="alert" id="success-message">
+
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<section class="book_section layout_padding">
+	<div class="container">
+		<div class="heading_container">
+			<h2>
+				Bize Ulaşın 
+			</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form_container">
+					<form asp-action="Contact">
+						<div asp-validation-summary="ModelOnly"></div>
+						<div class="row align-items-center my-3">
+							<div class="col-3">
+								<label asp-for="Name" class="col-form-label">@Html.DisplayNameFor(m => m.Name)</label>
+							</div>
+							<div class="col-9">
+								<input asp-for="Name" type="text" class="form-control mb-0" placeholder="Adınız" />
+								<span asp-validation-for="Name" class="form-text text-danger"></span>
+							</div>
+						</div>
+						<div class="row align-items-center my-3">
+							<div class="col-3">
+								<label asp-for="Surname" class="col-form-label">@Html.DisplayNameFor(m => m.Surname)</label>
+							</div>
+							<div class="col-9">
+								<input asp-for="Surname" type="text" class="form-control mb-0" placeholder="Soyadınız" />
+								<span asp-validation-for="Surname" class="form-text text-danger"></span>
+							</div>
+						</div>
+						<div class="row align-items-center my-3">
+							<div class="col-3">
+								<label asp-for="Phone" class="col-form-label">@Html.DisplayNameFor(m => m.Phone)</label>
+							</div>
+							<div class="col-9">
+								<input asp-for="Phone" class="form-control mb-0" type="tel" placeholder="Telefon Numaranız" />
+								<span asp-validation-for="Phone" class="form-text text-danger"></span>
+							</div>
+						</div>
+						<div class="row align-items-center my-3">
+							<div class="col-3">
+								<label asp-for="Description" class="col-form-label">@Html.DisplayNameFor(m => m.Email)</label>
+							</div>
+							<div class="col-9">
+								<input asp-for="Email" type="email" class="form-control mb-0" placeholder="E-Posta Adresiniz" />
+								<span asp-validation-for="Email" class="form-text text-danger"></span>
+							</div>
+						</div>
+						<div class="row align-items-center my-3">
+							<div class="col-3">
+								<label asp-for="Description" class="col-form-label">@Html.DisplayNameFor(m => m.Description)</label>
+							</div>
+							<div class="col-9">
+								<textarea asp-for="Description" type="text" class="form-control mb-0" rows="3" placeholder="Mesajınız..."></textarea>
+								<span asp-validation-for="Description" class="form-text text-danger"></span>
+							</div>
+						</div>
+						<input type="button" value="Gönder" onclick="SaveContactForm()" class="btn btn-success" />
+
+					</form>
+				</div>
+				<div id="result"></div>
+			</div>
+		</div>
+	</div>
+</section>
+@section Scripts {
+	<script type="text/javascript" src="~/contactAjax/index.js"></script>
+	@Html.Partial("_ValidationScriptsPartial")
+}

@@ -1,0 +1,30 @@
+﻿<h1>ÜRÜN EKLEME</h1>
+@model ProductViewModel
+<form asp-action="Create" method="post" enctype="multipart/form-data" id="accept-form">
+    <div class="form-group"  >
+        <span class="alert alert-danger text-danger">@ViewBag.ErrorMessage</span>
+        <label asp-for="Name">@Html.DisplayNameFor(m => m.Name) </label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
+
+        <label asp-for="Description">@Html.DisplayNameFor(m => m.Description) </label>
+        <input asp-for="Description" class="form-control" />
+
+        <label asp-for="Category" class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.Category)</label>
+        <div class="form-check form-switch">
+            <select asp-for="CategoryId" class="form-select" asp-items="@ViewBag.Categories"></select>
+            <span asp-validation-for="CategoryId" class="form-text text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PictureFormFile">@Html.DisplayNameFor(m => m.PictureFormFile) </label>
+            <input asp-for="PictureFormFile" type="file" class="form-control" />
+            <span asp-validation-for="PictureFormFile" class="form-text text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">EKLE</button>
+
+</form>
+
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+}

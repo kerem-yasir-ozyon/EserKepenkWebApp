@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\feane-1.0.0\**" />
+    <Content Remove="wwwroot\feane-1.0.0\**" />
+    <EmbeddedResource Remove="wwwroot\feane-1.0.0\**" />
+    <None Remove="wwwroot\feane-1.0.0\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\bootstrap.css" />
+    <Content Remove="wwwroot\css\font-awesome.min.css" />
+    <Content Remove="wwwroot\css\responsive.css" />
+    <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\css\style.css.map" />
+    <Content Remove="wwwroot\css\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\tasarim\css\style.css.map" />
+    <None Include="wwwroot\tasarim\css\style.scss" />
+    <None Include="wwwroot\tasarim\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\tasarim\js\bootstrap.js" />
+    <None Include="wwwroot\tasarim\js\custom.js" />
+    <None Include="wwwroot\tasarim\js\jquery-3.4.1.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EserKepenk.BLL\EserKepenk.BLL.csproj" />
+  </ItemGroup>
+
+</Project>

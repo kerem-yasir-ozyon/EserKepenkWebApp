@@ -1,0 +1,425 @@
+﻿@model List<CategoryViewModel>;
+@using EserKepenk;
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+<div class="hero_area">
+	@if (ViewBag.SliderCount > 0)
+	{
+		
+	<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			@for (int i = 0; i < ViewBag.SliderCount; i++)
+			{
+				string classCss = i == 0 ? "active" : "";
+
+				<li data-target="#carouselExampleCaptions" data-slide-to="@(i)" class="@classCss"></li>
+			}
+		</ol>
+		<div class="carousel-inner position-relative">
+			@{
+				int j = 0;
+			}
+			@foreach (SliderViewModel slider in (ViewBag.Sliders as List<SliderViewModel>))
+			{
+				string classCss = j == 0 ? "active" : "";
+				var base64tostring = Convert.ToBase64String(slider.PictureFile, 0, slider.PictureFile.Length);
+				var Imagesrc = string.Format("data:Image/*;base64," + base64tostring);
+
+
+				<div class="carousel-item @classCss">
+					<img src="@Imagesrc" class="d-block " style="width:inherit; height:720px; border:solid 4px red" alt="@slider.Title">
+
+					<div class="text-box">
+							<div class="" >
+								<h2 class="wow slideInRight fw-bold box1 xbootstrap" data-wow-duration="2s" style="color:goldenrod; font-size:72px;display:inline-block  ">@slider.Title</h2>
+								<p class="wow slideInLeft fw-bold box1 xbootstrap" data-wow-duration="4s" style="color:white; font-size:32px; display:inline-block ">@slider.Description  </p>
+							</div>	
+					</div>
+					</div>
+
+				j++;
+			}
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+
+		</div>
+	}
+	else
+	{
+		int random = new Random().Next(1, 5);
+		<img src="~/images/@(random).jpg" alt="">
+	}
+	<!-- end slider section -->
+</div>
+
+<!-- offer section -->
+
+<section class="offer_section layout_padding-bottom">
+	<div class="offer_container">
+		<div class="container ">
+			<div class="row">
+				<div class="col-md-6  ">
+					<div class="box ">
+						<div class="img-box">
+							<img src="~/images/otomatik-kepenk-1.jpg" alt="">
+						</div>
+						<div class="detail-box">
+							<h5>
+								Siyah Otomatik Katlanır Kepenk
+							</h5>
+							<h6>
+								<span>En kaliteli</span>  haliyle sizlerle
+							</h6>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6  ">
+					<div class="box ">
+						<div class="img-box">
+							<img style="width:120px" src="~/images/kitap.png" alt="">
+						</div>
+						<div class="detail-box">
+							<h5>
+								Dijital
+							</h5>
+							<h6>
+								<span>Katalog</span> hizmetinizde
+							</h6>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- end offer section -->
+<!-- food section -->
+
+<section class="food_section layout_padding-bottom">
+	<div class="container">
+		<div class="heading_container heading_center">
+			<h2>
+				<b>ÜRÜNLERİMİZ</b>
+			</h2>
+		</div>
+
+		<ul class="filters_menu">
+			<li class="active" data-filter="*">Tümünü Göster</li>
+			@foreach (var item in Model)
+			{
+				<li data-filter=".@item.Id">@item.Name</li>
+			}
+		</ul>
+		<div class="row grid">
+			<div class="filters-content">
+
+				@{
+					string link = "https://localhost:7208/Images/";
+					foreach (var item in Model)
+					{
+						foreach (var product in item.Products)
+						{
+							var base64tostring = Convert.ToBase64String(product.PictureFile, 0, product.PictureFile.Length);
+							var Imagesrc = string.Format("data:Image/*;base64," + base64tostring);
+							<div class="col-sm-6 col-lg-4 all @product.CategoryId">
+								<div class="box">
+									<div>
+										<div class="img-box">
+											<img src="@Imagesrc" alt="">
+										</div>
+										<div class="detail-box">
+											<h5>
+												@item.Name
+											</h5>
+											<p>
+												@product.Description
+											</p>
+											<div class="options">
+												<h6>
+													@* fiyat gelebilir*@
+												</h6>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+
+					}
+				}
+			</div>
+		</div>
+</section>
+
+<!-- end food section -->
+<!-- about section -->
+
+<section class="about_section layout_padding">
+	<div class="container  ">
+
+		<div class="row">
+			<div class="col-md-6 ">
+				<div class="img-box">
+					<img class="bg-transparent" src="~/images/transBuisnes_processed.png" alt="">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="detail-box">
+					<div class="heading_container">
+						<h2 class="pl-3">
+							EserKepenk Hakkında
+						</h2>
+					</div>
+					<div class="auto-container ">
+						<div class="row">
+							<div class="column col-lg-12 col-md-12 col-sm-12">
+								<div class="sec-title  wow slideInLeft">
+									<p style="font-size:20px; color:aliceblue">
+										1950 yılından günümüze kadar faaliyet gösteren ESER KEPENK 30 uzman personeli ile Gaziantep Sektörlerine ve özel mülklere hizmet vermektedir. Eser Kepenk olarak başlıcak ürün kategorimizi saymamız gerekirse;
+
+										Fabrika Kapıları
+										Garaj Kapıları
+										Bahçe Kapıları
+										Fotosel Kapıları
+										Panjur,
+										Kepenk,
+										Kumanda ve Bariyer sistemlerinde Gaziantep' de bir çok yeniliğe imza atmıştır.<br />
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a asp-action="About" asp-controller="Home">
+						Daha Fazlası
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- end about section -->
+<!-- client section -->
+
+<section class="client_section layout_padding-bottom mt-3">
+	<div class="container">
+		<div class="heading_container heading_center psudo_white_primary mb_45">
+			<h2>
+				İş Birliği Yaptığımız Firmalar
+			</h2>
+		</div>
+		<div class="carousel-wrap row ">
+			<div class="owl-carousel client_owl-carousel">
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							</p>
+							<h6>
+								Moana Michell
+							</h6>
+							<p>
+								magna aliqua
+							</p>
+						</div>
+						<div class="img-box">
+							<img src="~/images/ble.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+					<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							</p>
+							<h6>
+								Moana Michell
+							</h6>
+							<p>
+								magna aliqua
+							</p>
+						</div>
+						<div class="img-box">
+							<img src="~/images/label.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+					<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							</p>
+							<h6>
+								Moana Michell
+							</h6>
+							<p>
+								magna aliqua
+							</p>
+						</div>
+						<div class="img-box">
+							<img src="~/images/mfzovitor.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							</p>
+							<h6>
+								Moana Michell
+							</h6>
+							<p>
+								magna aliqua
+							</p>
+						</div>
+						<div class="img-box">
+							<img src="~/images/mosel.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							</p>
+							<h6>
+								Moana Michell
+							</h6>
+							<p>
+								magna aliqua
+							</p>
+						</div>
+						<div class="img-box">
+							<img src="~/images/setkepenk.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							</p>
+							<h6>
+								Moana Michell
+							</h6>
+							<p>
+								magna aliqua
+							</p>
+						</div>
+						<div class="img-box">
+							<img src="~/images/alusel.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Sittard genel merkezimizden, çoklu dağıtım merkezlerimizden ve Avrupa satış ofislerimizden DOCO, hem konut hem de endüstriyel sektörler için kapsamlı kapı çözümleri yaratmaya ve sunmaya kendini adamıştır.
+							</p>
+							<h6>
+								DOCO Door Solutions
+							</h6>
+						</div>
+						<div class="img-box">
+							<img src="~/images/doco.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Dynaco Europe NV, Dynaco ve Nergeco markaları altında endüstriyel ve ticari uygulamalar için yüksek performanslı kapılar sunmaktadır. namik, yenilikçi şirket ve bayiler ve montajcılar için en iyi ortak olmayı hedeflemektedir.
+							</p>
+							<h6>
+								DYNACO Door
+							</h6>
+						</div>
+						<div class="img-box">
+							<img src="~/images/dynaco.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Elmateks Branda ve Tekstil Sanayii, ev ve iş yerlerini, cafe, restaurant ve terasları SUANA markalı çeşit çeşit, renk renk, desen desen kumaşlardan imâl edilmiş tente ve brandalarla; sadece bir mevsim değil, tam dört mevsim yaşanabilir, huzurlu, rahat ve ferah mekânlar hâline dönüştürmektedir.
+							</p>
+							<h6>
+								ElmaTeks
+							</h6>
+						</div>
+						<div class="img-box">
+							<img src="~/images/elmateks.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Inkema, malların yüklenmesi ve boşaltılması ve endüstriyel muhafazalar aracılığıyla erişim kontrolü için entegre çözümler sağlama konusunda uzmanlaşmıştır
+							</p>
+							<h6>
+								INKEMA
+							</h6>
+						</div>
+						<div class="img-box">
+							<img src="~/images/inkema.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="box">
+						<div class="detail-box">
+							<p>
+								Seksiyonel kapı sandviç panel ve kapı donanım parçalarının üretimi ile demonte olarak seksiyonel garaj ve endüstriyel kapı üretimi, yüksek hızlı pvc kapı sistemleri, yükleme rampası ve körük sistemleri ve garaj ve endüstriyel kapı otomasyonları, bahçe kapısı otomasyonları ile  bariyer sistemleri ve aksesuar çeşitleriyle hizmet vermektedir.
+							</p>
+							<h6>
+								ISODOOR
+							</h6>
+						</div>
+						<div class="img-box">
+							<img src="~/images/isodoor.jpg" alt="" class="box-img">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div>
+	<div class="d-flex justify-content-center">
+
+		<iframe class="d-block" style="border:solid 6px red" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25466.763552063316!2d37.39684695335195!3d37.07307861001618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e5b1dc13d47d%3A0xc0f4b216858090e8!2sESER%20KEPENK%20OTOMAT%C4%B0K%20KAPI%20VE%20KEPENK%20S%C4%B0STEMLER%C4%B0!5e0!3m2!1str!2str!4v1715855424886!5m2!1str!2str" width="1400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</div>
+</div>
+@section Scripts {
+
+	
+}
+

@@ -1,0 +1,13 @@
+﻿@model List<ProductViewModel>
+
+
+@foreach (ProductViewModel item in Model)
+{
+    <tr>
+        <td>@item.RowNum</td>
+        <td>@item.Name</td>
+        <td>
+            <a class="btn btn-info" asp-controller="Category" asp-action="Index" asp-route-id="@item.Id">Geri Dön</a>
+        </td>
+    </tr>
+}

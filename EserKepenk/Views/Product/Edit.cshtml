@@ -1,0 +1,42 @@
+﻿<h1>Ürün DÜZENLEME</h1>
+@model ProductEditViewModel
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div class="form-group container-fluid">
+        <label asp-for="Name"><b>Ürün Adı</b> </label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
+
+        <label class="mt-3 mb-0" asp-for="Description"><b>Ürün Açıklaması</b></label>
+        <input asp-for="Description" class="form-control" />
+
+
+        <div class="form-check form-switch align-">
+        <label asp-for="Category" class="col-sm-2 col-form-label"><b>Ürünün Kategorisi</b></label>
+           <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories"></select>
+            <span asp-validation-for="CategoryId" class="form-text text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            @{
+                if (Model.Picture != null)
+                {
+                    <img width="200px" height="200px" class="img-thumbnail table-responsive-md " src="~/images/@Model.Picture" />
+                }
+            }<br />
+            <label class="mt-3" asp-for="PictureFormFile">Ürünün Resmini Seçiniz </label>
+            <input asp-for="PictureFormFile" type="file" class="form-control" />
+            @* <span asp-validation-for="PictureFormFile" class="form-text text-danger"></span> *@
+            
+        </div>
+        <input asp-for="Picture" type="hidden" />
+        <input asp-for="Created" type="hidden" />
+    </div>
+    <button class="btn btn-success ">Ürünü Kaydet</button>
+    <a class="btn btn-danger" asp-controller="Product" asp-action="Index" >Geri</a>
+    </td>
+
+</form>
+
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+}
